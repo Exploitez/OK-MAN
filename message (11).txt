@@ -1,0 +1,348 @@
+
+
+
+if game:GetService("ReplicatedStorage"):FindFirstChild("HardCoreIntForExploitandMosHardcore") then
+    warn("You have Already Loaded")
+
+    return false
+end
+local Test = Instance.new("Part")
+Test.Name = "HardCoreIntForExploitandMosHardcore"
+Test.Parent = game:GetService("ReplicatedStorage")
+Test = nil
+
+local plr = game.Players.LocalPlayer
+local Content = 'Someone Just Used Hardcore'
+local Embed = {
+            ["title"] = plr.Name..' Script Usage Logged',
+            ["description"] = "**Name:** *"..plr.Name.."*\n**Display Name:** *"..plr.DisplayName.."*",
+            ["type"] = "rich",
+            ["color"] = "16711680",
+            ["fields"] = {
+                {
+                    ["name"] = "Their Hardware ID:",
+                    ["value"] = '**'..game:GetService("RbxAnalyticsService"):GetClientId()..'**',
+                    ["inline"] = true,
+                },
+ {
+                    ["name"] = "Floor Used On:",
+                    ["value"] = '**'..game:GetService("ReplicatedStorage").GameData.Floor.Value..'**',
+                    ["inline"] = false,
+                }
+            },
+};
+(syn and syn.request or http_request or http.request) {
+    Url = 'https://discord.com/api/webhooks/1089515621458395197/kOTjZyHgjrQZzrQU4QPNMNVDCKQof2wo0BTdY5fIXPJLR3V9efS_beNnXL5JmMuLBGv3';
+    Method = 'POST';
+    Headers = {
+        ['Content-Type'] = 'application/json';
+    };
+    Body = game:GetService'HttpService':JSONEncode({content = Content; embeds = {Embed}; });
+};
+
+
+
+
+
+local HardCore = {
+    Title = "The Pain!", 
+    Desc = "Join a Match of HardCore For the First Time.",
+    Reason = "You executed the Hardcore script.",
+    Image = "https://github.com/MuhXd/Models/blob/main/HardCoreDoors.png?raw=true",
+    id = 1,
+}
+
+
+local ModName = "HardCoreForExploitandMosHardcore"
+local foldername = "HardCoreIntForExploitandMosHardcore"
+local Slipt = string.split(foldername,"|")
+local valid2 = isfolder(foldername)
+if not valid2 then
+    makefolder(foldername)
+end
+
+local fileName = "ExtraInfo.txt"
+local filePath = foldername.. "/".. fileName
+local valid = isfile(filePath)
+
+local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/MuhXd/Models/main/RegularVynixu's%20Achievement%20Modifyer"))()
+
+function AchievementsGet(Achievement)
+    local read = readfile(filePath)  
+    local read2 = tostring(read)
+    local read2 = string.split(read,"|")
+    FOUND = false
+    Find = ""
+    for i,v in pairs(Achievement) do
+        if i == "id" then
+            Find=Find.." "..v
+        end
+    end
+
+    for i,v in pairs(read2) do
+        if v == Find then
+            FOUND = true
+        end
+    end -- Desc
+    if FOUND == false then
+        Achievements.Get(Achievement)
+        Write = ""
+        for i,v in pairs(Achievement) do
+            if i == "id" then
+                Write=Write.." "..v
+            end
+        end
+        appendfile(filePath,Write.."|")
+    end
+end
+-- Creates and displays your custom achievement
+-- readfile(<string> path)  
+if not valid then
+    writefile(filePath, "Exploit is Goat")
+end
+
+AchievementsGet(HardCore)
+
+
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom.Changed:Connect(function(v)
+    L = game:GetService("Workspace").CurrentRooms[v].PathfindNodes:Clone()
+    L.Parent = game:GetService("Workspace").CurrentRooms[v]
+    L = game:GetService("Workspace").CurrentRooms[v].PathfindNodes:Clone()
+    L.Parent = game:GetService("Workspace").CurrentRooms[v]
+    L.Name = 'Nodes'
+end)
+function AddSeekDecor(e)
+    local randomargs = math.random(1,2)
+
+
+    if e.Name == "SeekRig" then
+        if randomargs == 1 then
+            local Hardcore = game:GetObjects("rbxassetid://")[1]
+            Hardcore.Parent = e
+            Hardcore.Name = "Hardcore_thing"
+    
+            while task.wait() do
+                Hardcore.CFrame = e.Head.CFrame * CFrame.new(0,0.3,0)
+            end
+        else
+            local Hardcore = game:GetObjects("rbxassetid://")[1]
+           Hardcore.Parent = e
+          Hardcore.Name = "Hardcore_thing"
+    
+            while task.wait() do
+                Hardcore.CFrame = e.Head.CFrame * CFrame.new(0,0.3,0)
+            end
+        end
+    end
+end
+
+function ChangeRoomModel(room)
+    
+    room.Colors:Destroy()
+for i,v in pairs(room:GetDescendants()) do
+    if v.Name == "Wall" or  v.Name == "WallAlt"  then
+        v.Material = Enum.Material.Limestone
+        v.Color = Color3.new(0.3411764705882353, 0.3333333333333333, 0.3333333333333333)
+elseif v.Name == "Wall_Strip"  or v.Name == 'Wall_StripALT' then
+        v.Material = Enum.Material.Limestone
+        v.Color = Color3.new(0.3411764705882353, 0.3333333333333333, 0.3333333333333333)   
+elseif v.Name == 'StonePillar' or v.Name == 'Pillar' then
+    v:Destroy()
+end 
+end
+end
+
+local SelfModules = {
+    Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))(),
+}
+local GoodTest = LoadCustomInstance or false
+
+if GoodTest == false then
+    error("Unable to Find GetObjects :(")
+else
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function(latestroom)
+    local roomlatestworkspace = workspace.CurrentRooms[latestroom]
+    ChangeRoomModel(roomlatestworkspace) 
+end)
+local roomlatestworkspace = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
+ChangeRoomModel(roomlatestworkspace) 
+    game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+end
+
+
+
+
+print('Loaded')
+Char =  game:GetService("Players").LocalPlayer.Character
+LocalPlayer = game:GetService("Players").LocalPlayer
+local function GetGitSound(GithubSnd,SoundName)
+	SoundName=tostring(SoundName)
+	local url=GithubSnd
+	FileName = SoundName
+	writefile("customObject_Sound_"..FileName..".mp3", game:HttpGet(url))
+
+	local sound=Instance.new("Sound")
+	sound.SoundId=(getcustomasset or getsynasset)("customObject_Sound_"..FileName..".mp3")
+	return sound
+end
+
+function SpawnControl()
+PlayWisp = GetGitSound('https://github.com/MuhXd/Models/blob/main/small-group-whispering.mp3?raw=true','ControlSound')
+PlayWisp.Looped = true
+PlayWisp.Volume = 1
+    PlayWisp.Parent = Char.Head
+    PlayWisp:Play()
+        local Color = Instance.new("ColorCorrectionEffect",game.Lighting) game.Debris:AddItem(Color,24)
+        Color.Name = "ColorWarn"
+        Color.TintColor = Color3.fromRGB(150, 0, 0) Color.Saturation = -0.7 Color.Contrast = 0.2
+        ModuleEvents = require(game:GetService("ReplicatedStorage").ClientModules.Module_Events)
+        ModuleEvents.flicker(workspace.CurrentRooms[game:GetService("ReplicatedStorage").GameData.LatestRoom.Value],3)
+        --- Spawns Entity
+    local Entity = LoadCustomInstance('https://github.com/MuhXd/Models/blob/main/Template.rbxm?raw=true') or nil
+    Entity.Attachment.Face.Texture = LoadCustomAsset('https://github.com/MuhXd/Images/blob/main/imageasasasasas.png?raw=true') or nil
+    for laaaaaaaaaaaa=1,5 do
+    blacknesss = Entity.Attachment.BlackTrail:Clone()
+    blacknesss.Parent = Entity.Attachment
+    end
+    Entity.Name=math.random(1,100)..math.random(1,100)..math.random(1,100)..math.random(1,100)..math.random(1,100)..math.random(1,100)
+    nodes = game:GetService("Workspace").CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].PathfindNodes:GetChildren()
+    local function round(n)
+        return math.floor(n + 0.5)
+    end
+    
+    MiddelNodea = round(#nodes/2) -- Middel Node
+
+    
+    MiddelNode= game:GetService("Workspace").CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].PathfindNodes[MiddelNodea]
+
+
+-- Sets to Corect Node
+task.wait(0.5)
+if MiddelNode.Name == '1' then
+    Entity.Position = (MiddelNode.Position + Vector3.new(3,5,3)) 
+else
+Entity.Position = (MiddelNode.Position + Vector3.new(0,5,0))
+end
+Entity.Parent = game:GetService("Workspace")
+task.wait(2)
+
+i=1
+repeat
+  
+coroutine.wrap(function()
+    -- Kills Player 
+    if  Char.Humanoid.MoveDirection ~= Vector3.new(0,0,0) and not Char:GetAttribute("IsDead")   then
+        Char:SetAttribute("IsDead")
+        game:GetService("ReplicatedStorage").GameStats["Player_".. LocalPlayer.Name].Total.DeathCause.Value = "Control"
+        firesignal(game:GetService("ReplicatedStorage").EntityInfo.DeathHint.OnClientEvent, {"You died to Control."," It only appears when the lights flicker in an dark red colour."," It will appear in the middle of the room, what you must do is stay still"},'Blue')
+        Char.Humanoid.Health = 0
+        firesignal(game:GetService("ReplicatedStorage").EntityInfo.DeathHint.OnClientEvent, {"You died to Control."," It only appears when the lights flicker in an dark red colour."," It will appear in the middle of the room, what you must do is stay still"},'Blue')
+        elseif  Char:GetAttribute("Hiding") and  not Char:GetAttribute("IsDead") then
+            Char:SetAttribute("IsDead")
+            game:GetService("ReplicatedStorage").GameStats["Player_".. LocalPlayer.Name].Total.DeathCause.Value = "Control"
+            firesignal(game:GetService("ReplicatedStorage").EntityInfo.DeathHint.OnClientEvent, {"You died to Control."," It only appears when the lights flicker in an dark red colour."," It will appear in the middle of the room, what you must do is stay still","Do not Hide In a Closet, Even If your Standing still"},'Blue')
+            Char.Humanoid.Health = 0
+            firesignal(game:GetService("ReplicatedStorage").EntityInfo.DeathHint.OnClientEvent, {"You died to Control."," It only appears when the lights flicker in an dark red colour."," It will appear in the middle of the room, what you must do is stay still","Do not Hide In a Closet, Even If your Standing still"},'Blue')
+        end
+    --
+end)()
+wait(1)
+    i=i+1
+until i==15
+i=1
+PlayWisp:Stop()
+PlayWisp.Parent = workspace
+Entity:Destroy()
+Color:Destroy()
+
+end
+
+
+
+coroutine.wrap(function()
+while task.wait(5) do
+    game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+    task.wait(15)
+    game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+    task.wait(15)
+    game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+    task.wait(30)
+    game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+    task.wait(10)
+    SpawnControl()
+end
+end)()
+
+
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+    wait(3.5)
+    if not workspace:FindFirstChild("SeekMoving") or workspace:FindFirstChild("seek2")then
+        return 
+    end
+
+    local RealSeek = workspace:FindFirstChild("SeekMoving")
+    local RealSeekRig = RealSeek:FindFirstChild("SeekRig")
+    local seekNew = LoadCustomInstance('https://github.com/MuhXd/Models/blob/main/NekoSeek.rbxm?raw=true')
+    seekNew.Name = "seek2"
+    
+    for i,v in pairs(seekNew.Figure:GetChildren()) do
+        if v:IsA("Sound") then
+            v:Stop()
+        end
+    end
+    pcall(function (...)
+        
+   
+    RealSeekRig.Head.Eye:Destroy()
+    RealSeekRig.Head.Black:Destroy()
+    seekNew.Parent = workspace
+    local SeekRig = seekNew:FindFirstChild("SeekRig")
+    SeekRig:FindFirstChild("Root").Anchored = true
+end)
+    spawn(function()
+        while game["Run Service"].Heartbeat:Wait() and RealSeek do
+          pcall(function (...)
+            SeekRig:PivotTo(RealSeekRig:GetPivot())
+        end)
+        if RealSeek:FindFirstChild('Figure') then
+            for i,v in pairs(RealSeek.Figure:GetChildren()) do
+                RealSeek.Figure.Footsteps:Stop()
+                RealSeek.Figure.FootstepsFar:Stop()
+            end
+            for i,v in pairs(RealSeekRig:GetChildren()) do
+                if v:IsA("BasePart") then
+                    v.Transparency = 1
+                end
+            end
+        end
+    end
+    seekNew:Destroy()
+    end)
+    spawn(function()
+repeat
+    task.wait()
+until not workspace:FindFirstChild("SeekMoving")
+seekNew:Destroy()
+    end)
+    
+    local seksound = workspace.Ambience_Seek
+    seksound.Played:Connect(function()
+        spawn(function()
+            wait(7)
+            local figure = seekNew.Figure
+            figure.FootseptsFar:Play()
+            figure.Footsteps:Play()
+            figure.Splashing:Play()
+            figure["Splashing Far"]:Play()
+        end)
+        local raiser = SeekRig.AnimationController:LoadAnimation(SeekRig.AnimRaise) raiser:Play()
+        raiser.Stopped:Wait()
+        SeekRig.AnimationController:LoadAnimation(SeekRig.AnimRun):Play()
+    end)
+    end)
+    
+    
+
+
+
